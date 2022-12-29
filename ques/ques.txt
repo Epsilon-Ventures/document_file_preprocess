@@ -1,0 +1,32 @@
+POKHARA UNIVERSITY
+Level:  Bachelor 
+Semester: Fall
+Year         : 2014
+Programme: BE
+Full Marks: 100
+Course: Artificial Intelligence
+Pass Marks: 45
+Time         :  3hrs.
+Candidates are required to give their answers in their own words as far as practicable.
+The figures in the margin indicate full marks.
+Attempt all the questions.
+Define and describe the difference between knowledge, belief, hypothesis and data.
+What is the goal of a constraint solver? How are constraints propagated in a constraint satisfaction search?
+Model the tic-tac-toe problem as a production system.What is A* search? Explain with its algorithms.
+In the figure below, use minimax search with alpha-beta pruning to decide the next move (node) by the MAX player from node A. The numbers indicate utility values.
+Compare Breadth First Search and Depth First Search in terms of time and space complexity, completeness and optimality.
+Convert (((A AND B) OR (C AND D)) OR E) into Conjunctive Normal Form. Here, OR and AND denote the usual propositional logic operators. 
+Assume the following facts:
+Steve only likes easy courses
+Science courses are hard
+All the course in the basket weaving department are easy
+BK301 is a basket weaving course
+       Use resolution to answer the question,” What course would Steve 
+       like?”
+Define proposition and a predicate. How does first order logic extend propositional logic to overcome its limitations?
+What is a semantic net? For the statement, “The dog bit the mail carrier.” Now, represent this statement (Knowledge) using partitioned semantic nets.
+What is learning? Explain rote learning and induction learning. Why the process of knowledge acquisition so tedious.
+Why Natural Language understanding is difficult? And also explain its application.
+Write short notes on: (Any twoStatistical reasoning
+Expert System
+Mathematics and Artificial Intelligence.
