@@ -1,4 +1,6 @@
 from googleapiclient.errors import HttpError
+import json
+import re
 
 def __read_paragraph_element(element):
     """Returns the text in the given ParagraphElement.
@@ -10,7 +12,9 @@ def __read_paragraph_element(element):
     if not text_run:
         return ''
     text = text_run.get('content')
-    return text if len(text) > 4  else ''
+    if len(text) > 40:
+        return text
+    return re.sub(r'\n*\d?\n', '\t', text)
 
 
 def __read_structural_elements(elements):
@@ -33,25 +37,28 @@ def __read_structural_elements(elements):
             for row in table.get('tableRows'):
                 cells = row.get('tableCells')
                 for cell in cells:
-                    text += __read_structural_elements(cell.get('content'))
+                    text +=  __read_structural_elements(cell.get('content'))
         elif 'tableOfContents' in value:
             # The text in the TOC is also in a Structural Element.
             toc = value.get('tableOfContents')
             text += __read_structural_elements(toc.get('content'))
-    return text
+    
+    return text+'\n'
 
-def get_docs_contents(service, document_id):
-  try:
-    # Retrieve the documents contents from the Docs service.
-    document = service.documents().get(documentId=document_id).execute()
-    doc_content = document.get('body').get('content')
+def get_docs_contents(service, document_id, get="text"):
+    try:
+        # Retrieve the documents contents from the Docs service.
+        document = service.documents().get(documentId=document_id).execute()
+        doc_content = document.get('body').get('content')
 
-    # with open('ques.json', 'w') as file:
-    #   doc_json = json.dumps(doc_content)
-    #   file.write(doc_json)
+        if get == "json":
+            with open('./ques/ques.json', 'w') as file:
+                doc_json = json.dumps(doc_content)
+                file.write(doc_json)
 
-    with open('../ques/ques.txt', 'w') as file:
-      file.write(__read_structural_elements(doc_content))
+        elif get == 'text':
+            with open('./ques/ques.txt', 'w') as file:
+                file.write(__read_structural_elements(doc_content))
 
-  except HttpError as err:
-      print(err)
+    except HttpError as err:
+        print(err)
